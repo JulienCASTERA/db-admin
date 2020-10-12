@@ -10,11 +10,13 @@ Sur MYSQL :
 mysql -u root -p
 
 CREATE DATABASE migration;
+use migration;
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(255) NOT NULL,
     lastName VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    PRIMARY KEY(id)
 );
 
 INSERT INTO users
