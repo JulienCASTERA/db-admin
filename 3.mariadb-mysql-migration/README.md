@@ -7,6 +7,8 @@ Sur MYSQL :
 
 ```sql
 
+mysql -u root -p
+
 CREATE DATABASE migration;
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT,
@@ -19,7 +21,7 @@ INSERT INTO users
 (firstName, lastName, email)
 VALUES
 ('Julien','Castera','julien.castera@ynov.com');
-
+exit;
 
 mysqldump -u root -p migration > /backups/backup.sql
 ```
@@ -27,8 +29,12 @@ mysqldump -u root -p migration > /backups/backup.sql
 Sur MariaDB :
 
 ```sql
+
+mysql -u root -p
+
+
 CREATE DATABASE migrationbackup;
-exit
+exit;
 
 ------
 
