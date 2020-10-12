@@ -1,0 +1,10 @@
+/backups/all_databases {
+  daily
+  rotate 5
+  compress
+  compresscmd bzip2
+  compressext .bz2
+  postrotate
+      mysqldump -uroot -proot --all-databases | gzip -9 -c > all_databases.sql.gz
+  endscript
+}
