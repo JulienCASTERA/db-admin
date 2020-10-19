@@ -1,0 +1,57 @@
+version:  '3.7'
+
+services:
+    first:
+        image: mariadb:10.5
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - ./first:/var/lib/mysql
+            - ./config/grastate.dat:/var/lib/mysql/grastate.dat
+            - ./config/my.first.cnf:/etc/mysql/conf.d/galera.cnf
+        command: --wsrep-new-cluster
+        ports: 
+            - 3306
+            - 4567
+            - 4568
+            - 4444
+        networks: 
+            cluster:
+                aliases: 
+                    - first.localhost
+    second:
+        image: mariadb:10.5
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - ./sec:/var/lib/mysql
+            - ./config/my.sec.cnf:/etc/mysql/conf.d/galera.cnf
+        ports: 
+            - 3306
+            - 4567
+            - 4568
+            - 4444
+        networks: 
+            cluster:
+                aliases: 
+                    - second.localhost
+    third:
+        image: mariadb:10.5
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+        volumes:
+            - ./third:/var/lib/mysql
+            - ./config/my.third.cnf:/etc/mysql/conf.d/galera.cnf
+        ports: 
+            - 3306
+            - 4567
+            - 4568
+            - 4444
+        networks: 
+            cluster:
+                aliases: 
+                    - third.localhost
+
+
+networks: 
+    cluster:
